@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/utils.css">
+
+
+    <title>iBlog for bloggers</title>
+</head>
+
+<body>
+    <nav class="navigation max-width-1 m-auto ">
+        <div class="nav-left">
+            <span> iBlog <a href="./index.html"></a>
+            </span>
+
+
+            <ul>
+                <li><a href="/index.html" class=" scroll-link">Home</a></li>
+                <li><a href="/about.html" class=" scroll-link">About</a></li>
+                <li><a href="/contact.html" class=" scroll-link">Contact</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <input class="form-input" type="text" placeholder="Article search">
+            <button class="btn">Search</button>
+        </div>
+    </nav>
+
+    <div class="content max-width-1 m-auto">
+        <div class="content-left">
+
+            <h1>The heaven for bloggers</h1>
+            <p>iBlog is a website which lets you submit an article which upon approval will be up on our website and you can get a good amount of reach from here!</p>
+            <p>My Halloween decorations are staying in the box this year. To be honest, they didn’t make it out of the box last year either. My Halloween spirit has officially been bludgeoned to death by teenagers who no longer care and a persistent October
+                fear of the Northern California wildfires. And speaking of fear, isn’t there more than enough of that going around? Maybe all of us can pretend that Halloween isn’t even happening this year.</p>
+        </div>
+        <div class="content-right">
+            <img src="/img/1.jpg" alt="iBlog">
+        </div>
+
+    </div>
+
+    <div class="max-width-1 m-auto">
+        <hr>
+    </div>
+
+
+    <div class="home-articles max-width-1 m-auto font2">
+        <h2>Featured Articles</h2>
+        <div class="home-article">
+
+            <div class="home-article-img">
+
+                <img src="./img/2.jpg" alt="iBlog">
+            </div>
+            <div class="home-article-content font1">
+                <h3> Lorem ipsum dolor sit amet consectetur adipisicing.</h3>
+                <span>Author Name</span>
+                <span>07 January | 6 min read</span>
+
+            </div>
+        </div>
+    </div>
+    <div class="footer ">
+
+        <p>Copyright &copy; iBlog.com </p>
+        <p>
+            Images from
+
+            <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=336377">  Pixabay</a>
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.5/gsap.min.js"></script>
+
+    <script>
+        // gsap.to('.content-right', {
+        //     duration: 1,
+        //     x: 200,
+        //     scale: 2
+        // })
+        gsap.from(".content-right", {
+            opacity: 0,
+            duration: 1,
+            delay: 1.5,
+            x: 200
+        });
+        gsap.from(".nav-left", {
+            opacity: 0,
+            duration: 1,
+            delay: 1.2,
+            y: 30,
+            stagger: 0.2,
+        });
+        gsap.from(".nav-right", {
+            opacity: 0,
+            duration: 1,
+            delay: 1.2,
+            y: 30,
+            stagger: 0.2,
+        });
+        gsap.from(".content-left", {
+            opacity: 0,
+            duration: 1,
+            delay: 2,
+            y: -50
+        });
+
+        const navBar = document.querySelector(".navigation");
+        const navHeight = navBar.getBoundingClientRect().height;
+        window.addEventListener("scroll", () => {
+            const scrollHeight = window.pageYOffset;
+            if (scrollHeight > navHeight) {
+                navBar.classList.add("fix-nav");
+            } else {
+                navBar.classList.remove("fix-nav");
+            }
+        });
+
+
+        // Scroll To
+        const links = [...document.querySelectorAll(".scroll-link")];
+        links.map(link => {
+            link.addEventListener("click", e => {
+                e.preventDefault();
+
+                const id = e.target.getAttribute("href").slice(1);
+                const element = document.getElementById(id);
+                const fixNav = navBar.classList.contains("fix-nav");
+                let position = element.offsetTop - navHeight;
+
+                window.scrollTo({
+                    top: position,
+                    left: 0,
+                });
+
+                navBar.classList.remove("show");
+                menu.classList.remove("show");
+                document.body.classList.remove("show");
+            });
+        });
+    </script>
+</body>
+
+</html>
